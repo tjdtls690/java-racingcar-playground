@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
@@ -23,6 +24,16 @@ public class InputViewTest {
     void setUp() {
         inputView = new InputView();
         calculator = new Calculator();
+    }
+
+    @ParameterizedTest
+    @DisplayName("문자열이 기본 구분자[(,), (:)]를 기준으로 잘 분리되는지 검증")
+    @CsvSource(value = {"1,3:9;13;true", "9,5:9; 23; true", "2,3:1,6; 12; true", "2,4; 7; false"}, delimiter = ';')
+    void divideString(String input, int assertNum, boolean assertCheck) {
+        List<String> strList = inputView.getStringList(input);
+        List<Integer> numList = inputView.convertStringToInteger(strList);
+        int sum = calculator.allSumValue(numList);
+        assertEquals(sum == assertNum, assertCheck);
     }
 
     @ParameterizedTest
