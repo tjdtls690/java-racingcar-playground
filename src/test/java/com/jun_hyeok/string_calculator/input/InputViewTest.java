@@ -27,6 +27,16 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
+    @DisplayName("문자열이 커스텀 구분자를 기준으로 잘 분리되는지 검증")
+    @CsvSource(value = {"//n\\n1n3n9; 13; true", "//c\\n9c5c9; 23; true", "//\\.\\n2.3.1.6; 12; true", "//nl\\n2nl4; 7; false"}, delimiter = ';')
+    void divideStringCustomDelim(String input, int assertNum, boolean assertCheck) {
+        List<String> strList = inputView.getStringList(input);
+        List<Integer> numList = inputView.convertStringToInteger(strList);
+        int sum = calculator.allSumValue(numList);
+        assertEquals(sum == assertNum, assertCheck);
+    }
+
+    @ParameterizedTest
     @DisplayName("문자열이 기본 구분자[(,), (:)]를 기준으로 잘 분리되는지 검증")
     @CsvSource(value = {"1,3:9;13;true", "9,5:9; 23; true", "2,3:1,6; 12; true", "2,4; 7; false"}, delimiter = ';')
     void divideString(String input, int assertNum, boolean assertCheck) {
