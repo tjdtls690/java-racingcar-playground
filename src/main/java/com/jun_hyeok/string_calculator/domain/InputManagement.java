@@ -1,6 +1,4 @@
-package com.jun_hyeok.string_calculator.input;
-
-import org.apache.commons.lang3.StringUtils;
+package com.jun_hyeok.string_calculator.domain;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,10 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class InputView {
+public class InputManagement {
     private final BufferedReader br;
 
-    public InputView() {
+    public InputManagement() {
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
