@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,16 @@ public class InputViewTest {
     void setUp() {
         inputView = new InputView();
         calculator = new Calculator();
+    }
+
+    @ParameterizedTest
+    @DisplayName("숫자 하나만 입력했을 때 숫자 하나가 잘 나오는지 검증")
+    @CsvSource({"1, 1", "5, 5", "7, 7", "10, 10", "15, 15", "100, 100", "1522, 1522", "123, 123", "5344, 5344"})
+    void one_number(String input, int assertNum){
+        List<String> strList = inputView.getStringList(input);
+        List<Integer> numList = inputView.convertStringToInteger(strList);
+        int sum = calculator.allSumValue(numList);
+        assertEquals(sum, assertNum);
     }
 
     @ParameterizedTest
