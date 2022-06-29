@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class InputManagementTest {
@@ -21,6 +22,16 @@ public class InputManagementTest {
     void setUp() {
         inputManagement = new InputManagement();
         calculator = new Calculator();
+    }
+
+    @Test
+    @DisplayName("음수일때 RuntimeException 발생 검증")
+    void NegativeNumber(){
+        List<String> strList = inputManagement.getStringList("1, -3, 9");
+        List<Integer> numList = inputManagement.convertStringToInteger(strList);
+        assertThatThrownBy(() -> {
+            calculator.allSumValue(numList);
+        }).isInstanceOf(RuntimeException.class);
     }
 
     @ParameterizedTest
@@ -56,7 +67,7 @@ public class InputManagementTest {
 
     @ParameterizedTest
     @DisplayName("문자열이 기본 구분자[(,), (:)]를 기준으로 잘 분리되는지 검증")
-    @CsvSource(value = {"1,3:9;13;true", "9,5:9; 23; true", "2,3:1,6; 12; true", "2,4; 7; false"}, delimiter = ';')
+    @CsvSource(value = {"1, 3: 9;13;true", "9, 5: 9; 23; true", "2, 3: 1,6; 12; true", "2,4; 7; false"}, delimiter = ';')
     void divideString(String input, int assertNum, boolean assertCheck) {
         List<String> strList = inputManagement.getStringList(input);
         List<Integer> numList = inputManagement.convertStringToInteger(strList);

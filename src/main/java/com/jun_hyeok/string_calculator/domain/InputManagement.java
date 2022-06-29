@@ -31,7 +31,7 @@ public class InputManagement {
         if (input == null || input.isEmpty()) {
             return Collections.emptyList();
         }
-
+        input = input.replace(" ", "");
         Matcher matcher = Pattern.compile("//(.*)\n(.*)").matcher(input);
         if (matcher.find()) {
             return getStrings(matcher);
