@@ -1,14 +1,12 @@
 package com.jun_hyeok.string_calculator.input;
 
 import com.jun_hyeok.string_calculator.domain.Calculator;
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,9 +26,20 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
+    @DisplayName("null 또는 \"\" 를 입력 시 RuntimeException 검증")
+    @NullSource
+    @EmptySource
+    void null_or_space(String input) {
+        List<String> strList = inputView.getStringList(input);
+        List<Integer> numList = inputView.convertStringToInteger(strList);
+        int sum = calculator.allSumValue(numList);
+        assertEquals(0, sum);
+    }
+
+    @ParameterizedTest
     @DisplayName("숫자 하나만 입력했을 때 숫자 하나가 잘 나오는지 검증")
     @CsvSource({"1, 1", "5, 5", "7, 7", "10, 10", "15, 15", "100, 100", "1522, 1522", "123, 123", "5344, 5344"})
-    void one_number(String input, int assertNum){
+    void one_number(String input, int assertNum) {
         List<String> strList = inputView.getStringList(input);
         List<Integer> numList = inputView.convertStringToInteger(strList);
         int sum = calculator.allSumValue(numList);

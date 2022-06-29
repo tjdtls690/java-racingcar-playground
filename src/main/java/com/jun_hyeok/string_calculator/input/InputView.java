@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,6 +30,10 @@ public class InputView {
     }
 
     public List<String> getStringList(String input) {
+        if (input == null || input.isEmpty()) {
+            return Collections.emptyList();
+        }
+
         Matcher matcher = Pattern.compile("//(.*)\n(.*)").matcher(input);
         if (matcher.find()) {
             return getStrings(matcher);
