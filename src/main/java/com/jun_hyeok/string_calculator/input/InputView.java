@@ -1,21 +1,20 @@
 package com.jun_hyeok.string_calculator.input;
 
-import jdk.internal.joptsimple.internal.Strings;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InputView {
     private final BufferedReader br;
 
     public InputView() {
-        br = new BufferedReader(new InputStreamReader((System.in)));
+        br = new BufferedReader(new InputStreamReader(System.in));
     }
 
 
@@ -30,18 +29,26 @@ public class InputView {
     }
 
     public List<String> getStringList(String input) {
-        if (StringUtils.containsAny(input, "//", "\\n")) {
-            String[] split = getSplit(input);
-            return Arrays.asList(split);
+        Matcher matcher = Pattern.compile("//(.*)\n(.*)").matcher(input);
+        if (matcher.find()) {
+            return getStrings(matcher);
         }
+        return getStrings(input);
+    }
+
+    private List<String> getStrings(String input) {
         String[] split = input.split("[,:]");
         return Arrays.asList(split);
     }
 
-    private String[] getSplit(String input) {
-        int idx = input.indexOf("\\n");
-        String delim = input.substring(2, idx);
-        input = input.substring(idx + 2);
-        return input.split(delim);
+    private List<String> getStrings(Matcher matcher) {
+        String[] split = getSplit(matcher);
+        return Arrays.asList(split);
+    }
+
+    private String[] getSplit(Matcher matcher) {
+        String delim = matcher.group(1);
+        String input = matcher.group(2);
+        return input.split("[" + delim + "]");
     }
 }
