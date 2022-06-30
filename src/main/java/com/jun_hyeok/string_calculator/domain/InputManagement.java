@@ -10,12 +10,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class InputManagement {
-    private final BufferedReader br;
 
-    public InputManagement() {
-        br = new BufferedReader(new InputStreamReader(System.in));
-    }
-
+    public static final String ERROR_MESSAGE_NUMBER_FORMAT = "숫자 및 구분자를 올바르게 입력해주세요.";
 
     public List<Integer> convertStringToInteger(List<String> input) throws RuntimeException {
         try {
@@ -23,7 +19,7 @@ public class InputManagement {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new RuntimeException("숫자 및 구분자를 올바르게 입력해주세요.");
+            throw new RuntimeException(ERROR_MESSAGE_NUMBER_FORMAT);
         }
     }
 
