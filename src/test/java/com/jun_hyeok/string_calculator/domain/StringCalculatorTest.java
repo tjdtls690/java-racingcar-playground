@@ -48,4 +48,12 @@ public class StringCalculatorTest {
         int result = s.splitAndSum(inputStr);
         assertEquals(assertNum, result);
     }
+
+    @ParameterizedTest
+    @DisplayName("커스텀 구분자")
+    @CsvSource(value = {"//n\\n2n 5n 10; 17", "//.\\n100. 5. 10; 115"}, delimiter = ';')
+    void splitAndSum_customSeparator(String inputStr, int assertNum){
+        int result = s.splitAndSum(inputStr);
+        assertEquals(assertNum, result);
+    }
 }
