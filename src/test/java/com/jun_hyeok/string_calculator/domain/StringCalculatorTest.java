@@ -3,8 +3,11 @@ package com.jun_hyeok.string_calculator.domain;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.in;
 
 public class StringCalculatorTest {
     StringCalculator s;
@@ -19,5 +22,13 @@ public class StringCalculatorTest {
     void num1(){
         int result = s.splitAndSum("2");
         assertThat(result).isEqualTo(2);
+    }
+
+    @ParameterizedTest
+    @DisplayName("빈 문자열 또는 null")
+    @NullAndEmptySource
+    void null_or_empty(String inputStr){
+        int result = s.splitAndSum(inputStr);
+        assertThat(result).isEqualTo(0);
     }
 }
