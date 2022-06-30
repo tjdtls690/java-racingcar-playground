@@ -1,5 +1,6 @@
 package com.jun_hyeok.string_calculator.domain;
 
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculatorTest {
@@ -20,7 +22,7 @@ public class StringCalculatorTest {
 
     @Test
     @DisplayName("숫자 하나")
-    void splitAndSum_num1(){
+    void splitAndSum_num1() {
         int result = s.splitAndSum("2");
         assertThat(result).isEqualTo(2);
     }
@@ -28,7 +30,7 @@ public class StringCalculatorTest {
     @ParameterizedTest
     @DisplayName("빈 문자열 또는 null")
     @NullAndEmptySource
-    void splitAndSum_nullOrEmpty(String inputStr){
+    void splitAndSum_nullOrEmpty(String inputStr) {
         int result = s.splitAndSum(inputStr);
         assertThat(result).isEqualTo(0);
     }
@@ -36,7 +38,7 @@ public class StringCalculatorTest {
     @ParameterizedTest
     @DisplayName("쉼표 구분자")
     @CsvSource(value = {"2, 5, 10; 17", "100, 5, 10; 115"}, delimiter = ';')
-    void splitAndSum_restSeparator(String inputStr, int assertNum){
+    void splitAndSum_restSeparator(String inputStr, int assertNum) {
         int result = s.splitAndSum(inputStr);
         assertEquals(assertNum, result);
     }
@@ -44,7 +46,7 @@ public class StringCalculatorTest {
     @ParameterizedTest
     @DisplayName("쉼표 또는 콜론 구분자")
     @CsvSource(value = {"2, 5: 10; 17", "100, 5: 10; 115"}, delimiter = ';')
-    void splitAndSum_restOrColonSeparator(String inputStr, int assertNum){
+    void splitAndSum_restOrColonSeparator(String inputStr, int assertNum) {
         int result = s.splitAndSum(inputStr);
         assertEquals(assertNum, result);
     }
@@ -52,8 +54,18 @@ public class StringCalculatorTest {
     @ParameterizedTest
     @DisplayName("커스텀 구분자")
     @CsvSource(value = {"//n\\n2n 5n 10; 17", "//.\\n100. 5. 10; 115"}, delimiter = ';')
-    void splitAndSum_customSeparator(String inputStr, int assertNum){
+    void splitAndSum_customSeparator(String inputStr, int assertNum) {
         int result = s.splitAndSum(inputStr);
         assertEquals(assertNum, result);
+    }
+
+    @ParameterizedTest
+    @DisplayName("음수")
+    @CsvSource(value = {"//n\\n-2n 5n 10", "//.\\n100. 5. -10"}, delimiter = ';')
+    void splitAndSum_negative(String inputStr) {
+        String errorMessage = "음수는 입력할 수 없습니다.";
+        assertThatThrownBy(() -> s.splitAndSum(inputStr))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage(errorMessage);
     }
 }

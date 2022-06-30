@@ -8,7 +8,9 @@ import java.util.stream.Collectors;
 
 public class StringCalculator {
 
-    public int splitAndSum(String input) {
+    public static final String ERROR_MESSAGE_NEGATIVE = "음수는 입력할 수 없습니다.";
+
+    public int splitAndSum(String input) throws RuntimeException {
         if (input == null || input.isEmpty()) {
             return 0;
         }
@@ -20,22 +22,22 @@ public class StringCalculator {
         return getSum(input);
     }
 
-    private int getSum(String input) {
+    private int getSum(String input) throws RuntimeException {
         Matcher m = Pattern.compile("//(.)\\\\n(.*)").matcher(input);
-        if(m.find()){
+        if (m.find()) {
             return getSumAssistant2(input);
         }
 
         return getSumAssistant1(input);
     }
 
-    private int getSumAssistant2(String input) {
+    private int getSumAssistant2(String input) throws RuntimeException {
         int idx = input.indexOf("\\n");
         List<Integer> integerList = getIntegerList(input, idx);
         return add(integerList);
     }
 
-    private int getSumAssistant1(String input) {
+    private int getSumAssistant1(String input) throws RuntimeException {
         List<Integer> integerList = getIntegerList(input);
         return add(integerList);
     }
@@ -54,12 +56,19 @@ public class StringCalculator {
         return stringListToIntegerList(strings);
     }
 
-    private int add(List<Integer> integerList) {
+    private int add(List<Integer> integerList) throws RuntimeException {
         int sum = 0;
-        for(int num : integerList){
+        for (int num : integerList) {
+            isNegative(num);
             sum += num;
         }
         return sum;
+    }
+
+    private void isNegative(int num) {
+        if (num < 0) {
+            throw new RuntimeException(ERROR_MESSAGE_NEGATIVE);
+        }
     }
 
     private List<Integer> stringListToIntegerList(List<String> strings) {
