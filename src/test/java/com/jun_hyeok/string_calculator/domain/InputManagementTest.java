@@ -57,9 +57,9 @@ public class InputManagementTest {
 
     @ParameterizedTest
     @DisplayName("문자열이 커스텀 구분자를 기준으로 잘 분리되는지 검증")
-    @CsvSource(value = {"//n; 1n3n9; 13; true", "//c; 9c5c9; 23; true", "//.; 2.3.1.6; 12; true"}, delimiter = ';')
-    void divideStringCustomDelim(String input1, String input2, int assertNum, boolean assertCheck) {
-        List<String> strList = inputManagement.getStringList(input1 + "\n" + input2);
+    @CsvSource(value = {"//n\\n1n3n9; 13; true", "//c\\n9c5c9; 23; true", "//.\\n2.3.1.6; 12; true"}, delimiter = ';')
+    void divideStringCustomDelim(String input, int assertNum, boolean assertCheck) {
+        List<String> strList = inputManagement.getStringList(input);
         List<Integer> numList = inputManagement.convertStringToInteger(strList);
         int sum = calculator.allSumValue(numList);
         assertEquals(sum == assertNum, assertCheck);
