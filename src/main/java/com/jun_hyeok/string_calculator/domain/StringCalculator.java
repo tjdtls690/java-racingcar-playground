@@ -19,7 +19,7 @@ public class StringCalculator {
     }
 
     private int getSum(String input) {
-        String[] split = input.split(",");
+        String[] split = input.split("[,:]");
         List<String> strings = Arrays.asList(split);
         List<Integer> integerList = stringListToIntegerList(strings);
         return add(integerList);
