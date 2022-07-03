@@ -15,7 +15,7 @@ public class Input {
 
     public String input() {
         System.out.println(INPUT_MESSAGE);
-        try{
+        try {
             return br.readLine();
         } catch (IOException e) {
             System.out.println(ERROR_INPUT_MESSAGE);
