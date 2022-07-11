@@ -24,4 +24,28 @@ public class RacingCarGame {
             carList.add(playerCar);
         }
     }
+
+    public String winnerDetermination(List<Car> players) {
+        String winners = "";
+        int mx = 0;
+        for(Car player : players){
+            winners = getWinners(player, mx, winners);
+            mx = getMaxNum(player, mx);
+        }
+        return winners;
+    }
+
+    private int getMaxNum(Car player, int mx) {
+        if(player.getPosition() > mx){
+            return player.getPosition();
+        }
+        return mx;
+    }
+
+    private String getWinners(Car player, int mx, String winners) {
+        if(player.getPosition() > mx){
+            return player.getName();
+        }
+        return winners;
+    }
 }

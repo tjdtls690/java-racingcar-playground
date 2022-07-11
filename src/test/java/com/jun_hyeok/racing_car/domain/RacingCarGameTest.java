@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -85,5 +87,19 @@ public class RacingCarGameTest {
             e.printStackTrace();
             throw new RuntimeException("테스트 코드 에러");
         }
+    }
+
+    @Test
+    @DisplayName("우승자 선정 한명")
+    void one_winner(){
+        Car jun = new Car("jun");
+        Car fobi = new Car("fobi");
+        Car dong = new Car("dong");
+        racingCarGame.stopIfNotMove(jun, 4);
+        racingCarGame.stopIfNotMove(jun, 6);
+        racingCarGame.stopIfNotMove(fobi, 4);
+        racingCarGame.stopIfNotMove(dong, 3);
+        String winner = racingCarGame.winnerDetermination(Arrays.asList(jun, fobi, dong));
+        assertThat(winner).isEqualTo("jun");
     }
 }
