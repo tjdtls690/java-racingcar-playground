@@ -8,6 +8,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RacingCarGameTest {
     private Car car;
@@ -64,6 +65,16 @@ public class RacingCarGameTest {
         assertThat(cars.size()).isEqualTo(3);
 
     }
+
+    @Test
+    @DisplayName("이름 5자 초과 시 에러 검증")
+    void nameVerification(){
+        assertThatThrownBy(() -> racingCarGame.createCars("jun, fobi, dongUk"))
+                .isInstanceOf(RuntimeException.class)
+                .hasMessage("이름은 5자를 초과할 수 없습니다.");
+    }
+
+
 
     private Object privateValueGet(String str) {
         try {

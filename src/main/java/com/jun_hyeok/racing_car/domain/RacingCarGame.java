@@ -16,7 +16,7 @@ public class RacingCarGame {
         }
     }
 
-    public void createCars(String players) {
+    public void createCars(String players) throws RuntimeException {
         players = players.replace(" ", "");
         String[] split = players.split(",");
         for(String player : split){
