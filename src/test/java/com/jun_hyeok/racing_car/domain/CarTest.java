@@ -35,4 +35,16 @@ public class CarTest {
         String currentSituation = car.getCurrentSituation();
         assertThat(currentSituation).isEqualTo("---");
     }
+
+    @Test
+    @DisplayName("한 번도 안움직였을 시 표시")
+    void current_situation_empty(){
+        racingCarGame.stopIfNotMove(car, 3);
+        racingCarGame.stopIfNotMove(car, 2);
+        racingCarGame.stopIfNotMove(car, 1);
+        racingCarGame.stopIfNotMove(car, 2);
+        racingCarGame.stopIfNotMove(car, 3);
+        String currentSituation = car.getCurrentSituation();
+        assertThat(currentSituation).isEqualTo("");
+    }
 }
