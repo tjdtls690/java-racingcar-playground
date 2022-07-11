@@ -23,4 +23,12 @@ public class RacingCarGameTest {
         int position = car.getPosition();
         assertThat(position).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("stop 검증")
+    void stop(){
+        racingCarGame.stopIfNotMove(car, 3);
+        int position = car.getPosition();
+        assertThat(position).isEqualTo(0);
+    }
 }
