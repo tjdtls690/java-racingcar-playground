@@ -17,4 +17,12 @@ public class Car {
     public void move() {
         position.plus();
     }
+
+    public String getCurrentSituation() {
+        StringBuilder currentSituation = new StringBuilder();
+        for(int i = 0; i < getPosition(); i++){
+            currentSituation.append("-");
+        }
+        return String.valueOf(currentSituation);
+    }
 }
