@@ -31,4 +31,16 @@ public class RacingCarGameTest {
         int position = car.getPosition();
         assertThat(position).isEqualTo(0);
     }
+
+    @Test
+    @DisplayName("multi move 검증")
+    void multi_move(){
+        racingCarGame.stopIfNotMove(car, 4);
+        racingCarGame.stopIfNotMove(car, 3);
+        racingCarGame.stopIfNotMove(car, 1);
+        racingCarGame.stopIfNotMove(car, 5);
+        racingCarGame.stopIfNotMove(car, 8);
+        int position = car.getPosition();
+        assertThat(position).isEqualTo(3);
+    }
 }
