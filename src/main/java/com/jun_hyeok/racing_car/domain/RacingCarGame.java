@@ -16,8 +16,12 @@ public class RacingCarGame {
         }
     }
 
-    public void createCar(String players) {
-        Car player = new Car(players);
-        carList.add(player);
+    public void createCars(String players) {
+        players = players.replace(" ", "");
+        String[] split = players.split(",");
+        for(String player : split){
+            Car playerCar = new Car(player);
+            carList.add(playerCar);
+        }
     }
 }

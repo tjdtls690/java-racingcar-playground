@@ -50,9 +50,18 @@ public class RacingCarGameTest {
     @Test
     @DisplayName("Car 객체 1개 생성")
     void one_car(){
-        racingCarGame.createCar("jun");
+        racingCarGame.createCars("jun");
         List<Car> cars = (List<Car>) privateValueGet("carList");
         assertThat(cars.size()).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("Car 객체 여러개 생성")
+    void multi_car(){
+        racingCarGame.createCars("jun, fobi, dong");
+        List<Car> cars = (List<Car>) privateValueGet("carList");
+        assertThat(cars.size()).isEqualTo(3);
 
     }
 
