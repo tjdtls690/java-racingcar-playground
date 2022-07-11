@@ -26,26 +26,26 @@ public class RacingCarGame {
     }
 
     public String winnerDetermination(List<Car> players) {
-        String winners = "";
+        StringBuilder winners = new StringBuilder();
+        int mx = getMax(players);
+        for(Car player : players){
+            winners.append(getWinners(player, mx));
+        }
+        return winners.substring(0, winners.length() - 2);
+    }
+
+    private String getWinners(Car player, int mx) {
+        if(player.getPosition() == mx){
+            return player.getName() + ", ";
+        }
+        return "";
+    }
+
+    private int getMax(List<Car> players) {
         int mx = 0;
         for(Car player : players){
-            winners = getWinners(player, mx, winners);
-            mx = getMaxNum(player, mx);
-        }
-        return winners;
-    }
-
-    private int getMaxNum(Car player, int mx) {
-        if(player.getPosition() > mx){
-            return player.getPosition();
+            mx = Math.max(player.getPosition(), mx);
         }
         return mx;
-    }
-
-    private String getWinners(Car player, int mx, String winners) {
-        if(player.getPosition() > mx){
-            return player.getName();
-        }
-        return winners;
     }
 }

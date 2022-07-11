@@ -102,4 +102,19 @@ public class RacingCarGameTest {
         String winner = racingCarGame.winnerDetermination(Arrays.asList(jun, fobi, dong));
         assertThat(winner).isEqualTo("jun");
     }
+
+    @Test
+    @DisplayName("우승자 선정 여러명")
+    void multi_winner(){
+        Car jun = new Car("jun");
+        Car fobi = new Car("fobi");
+        Car dong = new Car("dong");
+        racingCarGame.stopIfNotMove(jun, 4);
+        racingCarGame.stopIfNotMove(jun, 6);
+        racingCarGame.stopIfNotMove(fobi, 4);
+        racingCarGame.stopIfNotMove(fobi, 9);
+        racingCarGame.stopIfNotMove(dong, 3);
+        String winner = racingCarGame.winnerDetermination(Arrays.asList(jun, fobi, dong));
+        assertThat(winner).isEqualTo("jun, fobi");
+    }
 }
