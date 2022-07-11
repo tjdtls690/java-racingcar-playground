@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Field;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingCarGameTest {
@@ -12,7 +15,7 @@ public class RacingCarGameTest {
 
     @BeforeEach
     void setUp() {
-        car = new Car();
+        car = new Car("fobi");
         racingCarGame = new RacingCarGame();
     }
 
@@ -42,5 +45,25 @@ public class RacingCarGameTest {
         racingCarGame.stopIfNotMove(car, 8);
         int position = car.getPosition();
         assertThat(position).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("Car 객체 1개 생성")
+    void one_car(){
+        racingCarGame.createCar("jun");
+        List<Car> cars = (List<Car>) privateValueGet("carList");
+        assertThat(cars.size()).isEqualTo(1);
+
+    }
+
+    private Object privateValueGet(String str) {
+        try {
+            Field field = racingCarGame.getClass().getDeclaredField(str);
+            field.setAccessible(true);
+            return field.get(racingCarGame);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException("테스트 코드 에러");
+        }
     }
 }
