@@ -6,6 +6,10 @@ import java.util.List;
 public class RacingCarGame {
     private final List<Car> carList;
 
+    public List<Car> getCarList() {
+        return carList;
+    }
+
     public RacingCarGame() {
         carList = new ArrayList<>();
     }
