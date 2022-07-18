@@ -31,4 +31,12 @@ public class Car {
     public int hashCode() {
         return Objects.hash(name, position);
     }
+
+    public boolean lessThan(Car mx) {
+        return position.lessThan(mx.position);
+    }
+
+    public boolean posEquals(Car car) {
+        return Objects.equals(position, car.position);
+    }
 }

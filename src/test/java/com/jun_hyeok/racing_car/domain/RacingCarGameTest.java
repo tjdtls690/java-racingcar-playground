@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RacingCarGameTest {
 
     private RacingCarGame racingCarGame;
+    private Cars cars;
 
     @BeforeEach
     void setUp() {
@@ -32,9 +33,27 @@ public class RacingCarGameTest {
         assertThat(carList.size()).isEqualTo(3);
     }
 
+    @Test
+    @DisplayName("우승자 뽑기")
+    void find_winner(){
+        List<Car> carList = getCars("jun, fobi, dong");
+        Car jun = carList.get(0);
+        cars.moveOrStop(jun, 4);
+        cars.moveOrStop(jun, 4);
+        Car fobi = carList.get(1);
+        cars.moveOrStop(fobi, 4);
+        cars.moveOrStop(fobi, 4);
+        Car dong = carList.get(2);
+        cars.moveOrStop(dong, 4);
+        cars.moveOrStop(dong, 3);
+
+        List<Car> winners  = racingCarGame.findWinner();
+        assertThat(winners).containsExactly(jun, fobi);
+    }
+
     private List<Car> getCars(String carsName) {
         racingCarGame.createCar(carsName);
-        Cars cars = (Cars) getPrivateField(racingCarGame, "cars");
+        cars = (Cars) getPrivateField(racingCarGame, "cars");
         return (List<Car>) getPrivateField(cars, "carList");
     }
 

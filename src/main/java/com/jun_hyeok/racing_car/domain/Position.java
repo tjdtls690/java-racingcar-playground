@@ -33,4 +33,8 @@ public class Position {
     public int hashCode() {
         return Objects.hash(position);
     }
+
+    public boolean lessThan(Position mx) {
+        return this.position > mx.position;
+    }
 }
