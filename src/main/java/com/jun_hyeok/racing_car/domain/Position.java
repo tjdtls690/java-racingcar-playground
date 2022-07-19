@@ -5,22 +5,23 @@ import java.util.Objects;
 public class Position {
     public static final String POSITION_ERROR_MESSAGE = "차의 위치는 0 미만이 될 수 없습니다.";
     private final int position;
-
+//    private var ss;
+    
     public Position() {
         this(0);
     }
-
+    
     public Position(int position) {
-        if(position < 0){
+        if (position < 0) {
             throw new IllegalArgumentException(POSITION_ERROR_MESSAGE);
         }
         this.position = position;
     }
-
+    
     public Position move() {
         return new Position(position + 1);
     }
-
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,18 +29,18 @@ public class Position {
         Position position1 = (Position) o;
         return position == position1.position;
     }
-
+    
     @Override
     public int hashCode() {
         return Objects.hash(position);
     }
-
+    
     public boolean lessThan(Position mx) {
         return this.position > mx.position;
     }
-
+    
     public void UIPrint() {
-        for(int i = 0; i < position; i++){
+        for (int i = 0; i < position; i++) {
             System.out.print("-");
         }
     }
