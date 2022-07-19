@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Position {
     public static final String POSITION_ERROR_MESSAGE = "차의 위치는 0 미만이 될 수 없습니다.";
-    private int position;
+    private final int position;
 
     public Position() {
         this(0);

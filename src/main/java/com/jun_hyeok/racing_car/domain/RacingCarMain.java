@@ -45,8 +45,7 @@ public class RacingCarMain {
 
     private int getTryNum(InputView inputView, InputFunction inputFunction) {
         inputView.tryNumInputPrint();
-        int tryNum = inputFunction.getNum();
-        return tryNum;
+        return inputFunction.getNum();
     }
 
     private void correctCreateCars(InputView inputView, InputFunction inputFunction) {
@@ -69,8 +68,7 @@ public class RacingCarMain {
 
     private String getString(InputView inputView, InputFunction inputFunction) {
         inputView.inputCarsPrint();
-        String carsName = inputFunction.getInputString();
-        return carsName;
+        return inputFunction.getInputString();
     }
 
     public static void main(String[] args) {
