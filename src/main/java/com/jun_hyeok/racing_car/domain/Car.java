@@ -39,4 +39,12 @@ public class Car {
     public boolean posEquals(Car car) {
         return Objects.equals(position, car.position);
     }
+
+    public void positionPrint() {
+        position.UIPrint();
+    }
+
+    public void namePrint() {
+        name.UIPrint();
+    }
 }

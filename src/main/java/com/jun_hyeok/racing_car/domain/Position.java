@@ -37,4 +37,10 @@ public class Position {
     public boolean lessThan(Position mx) {
         return this.position > mx.position;
     }
+
+    public void UIPrint() {
+        for(int i = 0; i < position; i++){
+            System.out.print("-");
+        }
+    }
 }

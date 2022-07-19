@@ -32,4 +32,8 @@ public class Name {
     public int hashCode() {
         return Objects.hash(name);
     }
+
+    public void UIPrint() {
+        System.out.print(name);
+    }
 }
