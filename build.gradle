@@ -4,7 +4,6 @@ apply plugin: 'eclipse'
 group = 'camp.nextstep'
 version = '1.0.0'
 sourceCompatibility = 17
-targetCompatibility = 17
 
 repositories {
 	mavenCentral()
