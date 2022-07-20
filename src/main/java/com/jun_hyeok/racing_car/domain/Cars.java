@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cars {
-    private List<Car> carsList;
+    private final List<Car> carsList;
     
-    public Cars(String carsName) {
+    public Cars(String carsName) throws IllegalArgumentException {
         carsList = new ArrayList<>();
         createCars(carsName);
     }
     
-    private void createCars(String carsName) {
+    private void createCars(String carsName) throws IllegalArgumentException {
         String[] carsNameList = getCarsNameList(carsName);
         
         for (String carName : carsNameList) {

@@ -1,6 +1,9 @@
 package com.jun_hyeok.racing_car.domain;
 
 public class RacingCarGame {
-    public RacingCarGame(String carsName) {
+    private final Cars cars;
+    
+    public RacingCarGame(String carsName) throws IllegalArgumentException {
+        cars = new Cars(carsName);
     }
 }
