@@ -21,7 +21,12 @@ public class Cars {
     
     private String[] getCarsNameList(String carsName) {
         carsName = carsName.replace(" ", "");
-        String[] carsNameList = carsName.split(",");
-        return carsNameList;
+        return carsName.split(",");
+    }
+    
+    public void move() {
+        for (Car car : carsList) {
+            car.move(new RandomMove());
+        }
     }
 }

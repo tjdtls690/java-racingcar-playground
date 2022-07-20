@@ -6,4 +6,8 @@ public class RacingCarGame {
     public RacingCarGame(String carsName) throws IllegalArgumentException {
         cars = new Cars(carsName);
     }
+    
+    public void moveCars() {
+        cars.move();
+    }
 }
