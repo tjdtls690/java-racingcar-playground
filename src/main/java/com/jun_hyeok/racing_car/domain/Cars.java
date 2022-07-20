@@ -29,4 +29,23 @@ public class Cars {
             car.move(new RandomMove());
         }
     }
+    
+    public List<Car> findWinners() {
+        Car mxCar = new Car("mx", -1);
+        for (Car car : carsList) {
+            if (car.lessThan(mxCar)) {
+                mxCar = car;
+            }
+        }
+    
+        
+        List<Car> winners = new ArrayList<>();
+        for (Car car : carsList) {
+            if (car.isWinner(mxCar)) {
+                winners.add(car);
+            }
+        }
+        
+        return winners;
+    }
 }

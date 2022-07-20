@@ -15,4 +15,12 @@ public class CarDTO {
     public void move() {
         position = position.move();
     }
+    
+    public boolean lessThan(CarDTO carDTO) {
+        return position.lessThan(carDTO.position);
+    }
+    
+    public boolean isWinner(CarDTO mxCarDTO) {
+        return position.equals(mxCarDTO.position);
+    }
 }
