@@ -16,20 +16,26 @@ public class RacingCarMain {
     
     private void run() {
         InputView inputView = new InputView();
-    
         RacingCarGame racingCarGame = getRacingCarGame(inputView);
     
         int tryNum = inputView.getTryNum();
-        
         ResultView resultView = new ResultView();
+        playMove(racingCarGame, tryNum, resultView);
+    
+        printWinners(racingCarGame, resultView);
+    }
+    
+    private void printWinners(RacingCarGame racingCarGame, ResultView resultView) {
+        List<Car> winners = racingCarGame.getWinners();
+        resultView.printWinners(winners);
+    }
+    
+    private void playMove(RacingCarGame racingCarGame, int tryNum, ResultView resultView) {
         for (int i = 0; i < tryNum; i++) {
             racingCarGame.moveCars();
             List<Car> carsList = racingCarGame.getCarsList();
             resultView.printProcess(carsList);
         }
-        
-        List<Car> winners = racingCarGame.getWinners();
-        resultView.printWinners(winners);
     }
     
     private RacingCarGame getRacingCarGame(InputView inputView) {
