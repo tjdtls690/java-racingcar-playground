@@ -2,6 +2,7 @@ package com.jun_hyeok.racing_car.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
     private final List<Car> carsList;
@@ -47,5 +48,15 @@ public class Cars {
         }
         
         return winners;
+    }
+    
+    public List<Integer> getPositionList() {
+        return carsList.stream()
+                .map(car -> car.getPosition().getPosition())
+                .collect(Collectors.toList());
+    }
+    
+    public List<Car> getCarsList() {
+        return carsList;
     }
 }

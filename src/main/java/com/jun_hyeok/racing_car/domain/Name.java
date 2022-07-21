@@ -1,5 +1,8 @@
 package com.jun_hyeok.racing_car.domain;
 
+import lombok.Getter;
+
+@Getter
 public class Name {
     
     public static final String NAME_LENGTH_ERROR_MESSAGE = "자동차 이름은 5자를 초과할 수 없습니다.";

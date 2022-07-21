@@ -12,4 +12,12 @@ public class RacingCarGame {
     public void moveCars() {
         cars.move();
     }
+    
+    public List<Integer> getPositionList() {
+        return cars.getPositionList();
+    }
+    
+    public List<Car> getCarsList() {
+        return cars.getCarsList();
+    }
 }

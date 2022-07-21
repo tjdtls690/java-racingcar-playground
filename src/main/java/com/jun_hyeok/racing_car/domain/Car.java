@@ -32,4 +32,8 @@ public class Car {
     public boolean isWinner(Car mxCar) {
         return carDTO.isWinner(mxCar.carDTO);
     }
+    
+    public String getName() {
+        return name.getName();
+    }
 }
