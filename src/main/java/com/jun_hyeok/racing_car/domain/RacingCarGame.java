@@ -9,9 +9,7 @@ public class RacingCarGame {
         cars = new Cars(carsName);
     }
     
-    public void moveCars(int moveNum) {
-        for(int i = 0; i < moveNum; i++){
-            cars.move();
-        }
+    public void moveCars() {
+        cars.move();
     }
 }
