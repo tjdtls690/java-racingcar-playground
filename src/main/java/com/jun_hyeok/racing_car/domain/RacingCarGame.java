@@ -13,11 +13,11 @@ public class RacingCarGame {
         cars.move();
     }
     
-    public List<Integer> getPositionList() {
-        return cars.getPositionList();
-    }
-    
     public List<Car> getCarsList() {
         return cars.getCarsList();
+    }
+    
+    public List<Car> getWinners() {
+        return cars.findWinners();
     }
 }

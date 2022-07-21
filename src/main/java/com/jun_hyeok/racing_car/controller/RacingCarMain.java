@@ -27,6 +27,9 @@ public class RacingCarMain {
             List<Car> carsList = racingCarGame.getCarsList();
             resultView.printProcess(carsList);
         }
+        
+        List<Car> winners = racingCarGame.getWinners();
+        resultView.printWinners(winners);
     }
     
     private RacingCarGame getRacingCarGame(InputView inputView) {

@@ -16,9 +16,17 @@ public class ResultView {
     
     private void printPositionProcess(Car car) {
         int position = car.getPosition().getPosition();
-        for(int i = 0; i < position; i++){
+        for (int i = 0; i < position; i++) {
             System.out.print("-");
         }
         System.out.println();
+    }
+    
+    public void printWinners(List<Car> winners) {
+        StringBuilder winnerStr = new StringBuilder(winners.get(0).getName());
+        for (int i = 1; i < winners.size(); i++) {
+            winnerStr.append(", ").append(winners.get(i).getName());
+        }
+        System.out.println(winnerStr + "가 최종 우승했습니다.");
     }
 }
