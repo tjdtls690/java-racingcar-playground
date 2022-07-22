@@ -8,4 +8,10 @@ public class Cars {
     public Cars(List<Car> carsList) {
         this.carsList = carsList;
     }
+    
+    public void move() {
+        for (Car car : carsList) {
+            car.move(new RandomMovingSelect());
+        }
+    }
 }

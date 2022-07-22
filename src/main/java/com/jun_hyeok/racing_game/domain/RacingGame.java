@@ -5,6 +5,7 @@ import java.util.List;
 
 public class RacingGame {
     private final Cars cars;
+    private int raceCnt;
     
     public RacingGame(String carsName) throws IllegalArgumentException {
         cars = new Cars(createCarsList(carsName));
@@ -24,5 +25,10 @@ public class RacingGame {
     private static String[] getCarsSplit(String carsName) {
         carsName = carsName.replace(" ", "");
         return carsName.split(",");
+    }
+    
+    public void race() {
+        cars.move();
+        raceCnt++;
     }
 }
