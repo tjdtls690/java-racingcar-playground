@@ -10,7 +10,7 @@ public class RacingGame {
         cars = new Cars(createCarsList(carsName));
     }
     
-    private List<Car> createCarsList(String carsName) {
+    static List<Car> createCarsList(String carsName) {
         List<Car> carsList = new ArrayList<>();
         String[] carsSplit = getCarsSplit(carsName);
     
@@ -21,7 +21,7 @@ public class RacingGame {
         return carsList;
     }
     
-    private String[] getCarsSplit(String carsName) {
+    private static String[] getCarsSplit(String carsName) {
         carsName = carsName.replace(" ", "");
         return carsName.split(",");
     }
