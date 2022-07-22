@@ -1,7 +1,10 @@
 package com.jun_hyeok.racing_game.domain;
 
+import lombok.Getter;
+
 import java.util.function.Supplier;
 
+@Getter
 public class Car {
     private final Name name;
     private Position position;
@@ -19,10 +22,6 @@ public class Car {
         if(isMove.get()) {
             position = position.move();
         }
-    }
-    
-    public Position getPosition() {
-        return position;
     }
     
     public void isMxPosition(Position mxPosition) {
