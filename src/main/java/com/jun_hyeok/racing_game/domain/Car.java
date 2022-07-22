@@ -1,9 +1,9 @@
 package com.jun_hyeok.racing_game.domain;
 
 public class Car {
-    private final String name;
+    private final Name name;
     
-    public Car(String carName) {
-        this.name = carName;
+    public Car(String name) {
+        this.name = new Name(name);
     }
 }
