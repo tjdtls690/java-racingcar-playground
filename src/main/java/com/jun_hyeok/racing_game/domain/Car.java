@@ -24,4 +24,12 @@ public class Car {
     public Position getPosition() {
         return position;
     }
+    
+    public void isMxPosition(Position mxPosition) {
+        position.isMxPosition(mxPosition);
+    }
+    
+    public boolean isWinner(Position mxPosition) {
+        return position.equals(mxPosition);
+    }
 }

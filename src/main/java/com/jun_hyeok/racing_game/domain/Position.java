@@ -13,4 +13,10 @@ public class Position {
     public Position move() {
         return new Position(position + 1);
     }
+    
+    public void isMxPosition(Position mxPosition) {
+        if (position > mxPosition.position) {
+            mxPosition.position = position;
+        }
+    }
 }
