@@ -15,7 +15,7 @@ public class RacingGameTest {
     @DisplayName("자동차 생성 (1대)")
     void create_car_one() {
         RacingGame racingGame = new RacingGame("jun");
-        List<Car> carsList = (List<Car>) getPrivateVal(racingGame, "carsList");
+        List<Car> carsList = getCarList(racingGame);
         assertThat(carsList.size()).isEqualTo(1);
     }
     
@@ -23,8 +23,13 @@ public class RacingGameTest {
     @DisplayName("자동차 생성 (여러대)")
     void create_car_multi() {
         RacingGame racingGame = new RacingGame("jun, chul, young");
-        List<Car> carsList = (List<Car>) getPrivateVal(racingGame, "carsList");
+        List<Car> carsList = getCarList(racingGame);
         assertThat(carsList.size()).isEqualTo(3);
+    }
+    
+    private List<Car> getCarList(RacingGame racingGame) {
+        Cars cars = (Cars) getPrivateVal(racingGame, "cars");
+        return (List<Car>) getPrivateVal(cars, "carsList");
     }
     
     private Object getPrivateVal(Object object, String fieldName) {
