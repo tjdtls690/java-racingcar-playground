@@ -19,6 +19,14 @@ public class RacingGameTest {
         assertThat(carsList.size()).isEqualTo(1);
     }
     
+    @Test
+    @DisplayName("자동차 생성 (여러대)")
+    void create_car_multi() {
+        RacingGame racingGame = new RacingGame("jun, chul, young");
+        List<Car> carsList = (List<Car>) getPrivateVal(racingGame, "carsList");
+        assertThat(carsList.size()).isEqualTo(3);
+    }
+    
     private Object getPrivateVal(Object object, String fieldName) {
         try {
             Field field = object.getClass().getDeclaredField(fieldName);
