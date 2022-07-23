@@ -36,4 +36,12 @@ public class RacingGame {
     public boolean isEnd() {
         return tryNum == 0;
     }
+    
+    public List<Car> getCars() {
+        return cars.getCarsList();
+    }
+    
+    public List<Car> getWinners() {
+        return cars.findWinners();
+    }
 }

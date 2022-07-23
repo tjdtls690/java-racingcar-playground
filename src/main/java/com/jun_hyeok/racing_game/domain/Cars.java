@@ -1,8 +1,11 @@
 package com.jun_hyeok.racing_game.domain;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Cars {
     private final List<Car> carsList;
     

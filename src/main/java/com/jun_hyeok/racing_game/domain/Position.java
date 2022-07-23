@@ -1,7 +1,9 @@
 package com.jun_hyeok.racing_game.domain;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
+@Getter
 @EqualsAndHashCode
 public class Position {
     private int position;
