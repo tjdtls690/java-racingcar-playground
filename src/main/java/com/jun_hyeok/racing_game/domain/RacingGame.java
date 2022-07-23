@@ -5,10 +5,11 @@ import java.util.List;
 
 public class RacingGame {
     private final Cars cars;
-    private int raceCnt;
+    private int tryNum;
     
-    public RacingGame(String carsName) throws IllegalArgumentException {
-        cars = new Cars(createCarsList(carsName));
+    public RacingGame(String carsName, int tryNum) throws IllegalArgumentException {
+        this.cars = new Cars(createCarsList(carsName));
+        this.tryNum = tryNum;
     }
     
     static List<Car> createCarsList(String carsName) throws IllegalArgumentException {
@@ -29,6 +30,10 @@ public class RacingGame {
     
     public void race() {
         cars.move();
-        raceCnt++;
+        tryNum--;
+    }
+    
+    public boolean isEnd() {
+        return tryNum == 0;
     }
 }

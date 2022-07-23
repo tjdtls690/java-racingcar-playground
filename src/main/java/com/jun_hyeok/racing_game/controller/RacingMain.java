@@ -1,17 +1,17 @@
 package com.jun_hyeok.racing_game.controller;
 
+import com.jun_hyeok.racing_game.domain.RacingGame;
 import com.jun_hyeok.racing_game.input.InputView;
 
 public class RacingMain {
-    private final InputView iv;
-    
-    public RacingMain() {
-        iv = new InputView();
-    }
-    
     private void run() {
-        String carsNameStr = iv.getInput();
-        int tryNum = iv.getInt();
+        String carsNameStr = InputView.getInput();
+        int tryNum = InputView.getInt();
+        
+        RacingGame racingGame = new RacingGame(carsNameStr, tryNum);
+        while (!racingGame.isEnd()) {
+        
+        }
     }
     
     public static void main(String[] args) {
