@@ -10,8 +10,8 @@ public class RacingMain {
     }
     
     private void run() {
-        String carsNameStr = iv.getString();
-        
+        String carsNameStr = iv.getInput();
+        int tryNum = iv.getInt();
     }
     
     public static void main(String[] args) {
